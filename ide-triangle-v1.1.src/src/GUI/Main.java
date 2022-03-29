@@ -38,6 +38,7 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import Core.Visitors.TreeVisitor;
 import TAM.JsonReader;
+import TAM.Jsongenerator;
 import com.google.gson.Gson;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -737,6 +738,7 @@ public class Main extends javax.swing.JFrame {
 
     private void compileFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileFileMenuItemActionPerformed
         // TODO add your handling code here:
+        Jsongenerator.main(new String[] {desktopPane.getSelectedFrame().getTitle().replace(".tri", ".tam")});
     }//GEN-LAST:event_compileFileMenuItemActionPerformed
 
     private void runFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runFileMenuItemActionPerformed
