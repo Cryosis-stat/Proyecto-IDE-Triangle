@@ -738,6 +738,7 @@ public class Main extends javax.swing.JFrame {
 
     private void compileFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileFileMenuItemActionPerformed
         // TODO add your handling code here:
+        output.setDelegate(delegateConsole);
         Jsongenerator.main(new String[] {desktopPane.getSelectedFrame().getTitle().replace(".tri", ".tam")});
     }//GEN-LAST:event_compileFileMenuItemActionPerformed
 
