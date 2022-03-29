@@ -266,7 +266,7 @@ public class Jsongenerator {
       
     }
     else
-      System.out.print("\nFile not found\n");
+      System.out.print("\nFile name not specified\n");
   }  
       
 }
