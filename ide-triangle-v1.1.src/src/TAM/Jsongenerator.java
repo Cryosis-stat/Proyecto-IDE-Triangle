@@ -197,19 +197,25 @@ public class Jsongenerator {
    PrintWriter pw = null;
    try
         {
+            if (CT >0) {
             //Create file
-            file = new FileWriter(filename.replace(".tam", ".json"));
-            pw = new PrintWriter(file);
+              file = new FileWriter(filename.replace(".tam", ".json"));
+              pw = new PrintWriter(file);
             
-            //write in file
-            pw.println("[");
-            for (int addr = Machine.CB; addr < CT; addr++) {
+              //write in file
+              pw.println("[");
+              for (int addr = Machine.CB; addr < CT; addr++) {
                 writeInstruction(Machine.code[addr],pw);
+              }
+            
+              pw.println("]");
+            
+              file.close();
+              System.out.println("\nJSON file successfully created");
             }
-            
-            pw.println("]");
-            
-            file.close();
+            else
+              System.out.println("\nError trying to create the JSON file");
+
         }                                                                                                                                                                              
     catch (Exception e) {
             e.printStackTrace();
