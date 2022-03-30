@@ -8,6 +8,7 @@ import Core.Console.InputRedirector;
 import Core.Console.OutputRedirector;
 import Core.IDE.IDEDisassembler;
 import Core.IDE.IDEInterpreter;
+import Core.IDE.IDEJSONexecuter;
 import Core.Visitors.TableVisitor;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.Toolkit;
@@ -37,9 +38,7 @@ import Core.ExampleFileFilter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import Core.Visitors.TreeVisitor;
-import TAM.JsonReader;
 import TAM.Jsongenerator;
-import com.google.gson.Gson;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -167,22 +166,6 @@ public class Main extends javax.swing.JFrame {
         return (chooser);
     }
 
-    /**
-     * Leer Json.
-     *
-     * @return Json.
-     */
-    private String readFileTAM(String info) {
-        Gson gson = new Gson();
-        String result = "********** TAM Disassembler (Sun Version 2.1) **********\n";
-        int cont = 0;
-        JsonReader[] tam = gson.fromJson(info, JsonReader[].class);
-        for (JsonReader obj : tam) {
-            result += cont + ":  " + obj.getOperation() + "  (" + obj.getLength() + ")  " + obj.getOperand() + " " + obj.getRegister() + "\n";
-            cont += 1;
-        }
-        return result;
-    }
 
     /**
      * Main method, instantiates the Main class.
@@ -636,7 +619,8 @@ public class Main extends javax.swing.JFrame {
                 br.close();
                 addInternalFrame(chooser.getSelectedFile().getPath(), sr.replace("\r\n", "\n")).setPreviouslySaved(true);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "An error occurred while trying to open the specified file", "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "An error occurred while trying to open the specified file", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
@@ -757,12 +741,21 @@ public class Main extends javax.swing.JFrame {
                     json += linea;
                 }
                 br.close();
-                result = readFileTAM(json);
+                
                 addInternalFrame(chooser.getSelectedFile().getPath(), "").setPreviouslySaved(true);
-                ((FileFrame) desktopPane.getSelectedFrame()).writeToTAMCode(result);
+                output.setDelegate(delegateTAMCode);
+                ((FileFrame) desktopPane.getSelectedFrame()).selectConsole();
+                TAM.JsonReader.readFileTAM(json);
+                
+                ((FileFrame) desktopPane.getSelectedFrame()).clearConsole();
+                ((FileFrame) desktopPane.getSelectedFrame()).selectConsole();                
+                output.setDelegate(delegateConsole);
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while trying to open the specified file", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            
+            jsonExecuter.Run();
         }
     }//GEN-LAST:event_runFileMenuItemActionPerformed
 
@@ -947,6 +940,7 @@ public class Main extends javax.swing.JFrame {
     IDECompiler compiler = new IDECompiler();                               // Compiler - Analyzes/generates TAM programs
     IDEDisassembler disassembler = new IDEDisassembler();                   // Disassembler - Generates TAM Code
     IDEInterpreter interpreter = new IDEInterpreter(delegateRun);           // Interpreter - Runs TAM programs
+    IDEJSONexecuter jsonExecuter = new IDEJSONexecuter(delegateRun);        // Run TAM programs fron JSON code
     OutputRedirector output = new OutputRedirector();                       // Redirects the console output
     InputRedirector input = new InputRedirector(delegateInput);             // Redirects console input
     TreeVisitor treeVisitor = new TreeVisitor();                            // Draws the Abstract Syntax Trees
