@@ -189,7 +189,7 @@ public class Jsongenerator {
   } 
  
    /**
-   * Create de file and write the instructions .
+   * Create the file and write the instructions .
    */
   private static void createJSON(String filename){
   
