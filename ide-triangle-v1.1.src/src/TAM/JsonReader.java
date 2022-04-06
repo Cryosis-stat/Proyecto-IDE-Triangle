@@ -49,121 +49,121 @@ public class JsonReader {
     
    private static int getOperationCode(String operation){
    
-   int code = 0;
+   int opCode = 0;
    
        switch (operation) {
            case "LOAD":
-               code = Machine.LOADop;
+               opCode = Machine.LOADop;
                break;
            case "LOADA":
-               code = Machine.LOADAop;
+               opCode = Machine.LOADAop;
                break;
            case "LOADI":
-               code = Machine.LOADIop;
+               opCode = Machine.LOADIop;
                break;
            case "LOADL":
-               code = Machine.LOADLop;
+               opCode = Machine.LOADLop;
                break;
            case "STORE":
-               code = Machine.STOREop;
+               opCode = Machine.STOREop;
                break;
            case "STOREI":
-               code = Machine.STOREIop;
+               opCode = Machine.STOREIop;
                break;
            case "CALL":
-               code = Machine.CALLop;
+               opCode = Machine.CALLop;
                break;
            case "CALLI":
-               code = Machine.CALLIop;
+               opCode = Machine.CALLIop;
                break;
            case "RETURN":
-               code = Machine.RETURNop;
+               opCode = Machine.RETURNop;
                break;
            case "PUSH":
-               code = Machine.PUSHop;
+               opCode = Machine.PUSHop;
                break;
            case "POP":
-               code = Machine.POPop;
+               opCode = Machine.POPop;
                break;
            case "JUMP":
-               code = Machine.JUMPop;
+               opCode = Machine.JUMPop;
                break;
            case "JUMPI":
-               code = Machine.JUMPIop;
+               opCode = Machine.JUMPIop;
                break;
            case "JUMPIF":
-               code = Machine.JUMPIFop;
+               opCode = Machine.JUMPIFop;
                break;
            case "HALT":
-               code = Machine.HALTop;
+               opCode = Machine.HALTop;
                break;
            default:
                break;
        }
    
-   return code;
+   return opCode;
    }
    
    
    private static int getRegisterCode(String register){
    
-   int code = 0;
+   int registerCode = 0;
    
        switch (register) {
            case "CB":
-               code = Machine.CBr;
+               registerCode = Machine.CBr;
                break;
            case "CT":
-               code = Machine.CTr;
+               registerCode = Machine.CTr;
                break;
            case "PB":
-               code = Machine.PBr;
+               registerCode = Machine.PBr;
                break;
            case "PT":
-               code = Machine.PTr;
+               registerCode = Machine.PTr;
                break;
            case "SB":
-               code = Machine.SBr;
+               registerCode = Machine.SBr;
                break;
            case "ST":
-               code = Machine.STr;
+               registerCode = Machine.STr;
                break;
            case "HB":
-               code = Machine.HBr;
+               registerCode = Machine.HBr;
                break;
            case "HT":
-               code = Machine.HTr;
+               registerCode = Machine.HTr;
                break;
            case "LB":
-               code = Machine.LBr;
+               registerCode = Machine.LBr;
                break;
            case "L1":
-               code = Machine.L1r;
+               registerCode = Machine.L1r;
                break;
            case "L2":
-               code = Machine.L2r;
+               registerCode = Machine.L2r;
                break;
            case "L3":
-               code = Machine.L3r;
+               registerCode = Machine.L3r;
                break;
            case "L4":
-               code = Machine.L4r;
+               registerCode = Machine.L4r;
                break;
            case "L5":
-               code = Machine.L5r;
+               registerCode = Machine.L5r;
                break;
            case "L6":
-               code = Machine.L6r;
+               registerCode = Machine.L6r;
                break;
            case "CP":
-               code = Machine.CPr;
+               registerCode = Machine.CPr;
                break;
            default:
                break;
        }   
    
    
-   return code;
+   return registerCode;
    }
    
    
@@ -193,7 +193,7 @@ public class JsonReader {
     public static void executeCode(){
     
         if (CT != CB){ 
-            System.out.println("\n***************** Running from File *****************");
+            System.out.println("***************** Running from File *****************\n");
             interpretProgram();
             showStatus();
         }
