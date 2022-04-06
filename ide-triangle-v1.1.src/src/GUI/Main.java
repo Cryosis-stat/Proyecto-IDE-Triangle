@@ -211,6 +211,7 @@ public class Main extends javax.swing.JFrame {
         compileMenuItem = new javax.swing.JMenuItem();
         runMenuItem = new javax.swing.JMenuItem();
         compileFileMenuItem = new javax.swing.JMenuItem();
+        loadFileMenuItem = new javax.swing.JMenuItem();
         runFileMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -505,9 +506,20 @@ public class Main extends javax.swing.JFrame {
         });
         triangleMenu.add(compileFileMenuItem);
 
-        runFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        loadFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        loadFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/iconFileOpen.gif"))); // NOI18N
+        loadFileMenuItem.setText("Load from file");
+        loadFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadFileMenuItemActionPerformed(evt);
+            }
+        });
+        triangleMenu.add(loadFileMenuItem);
+
+        runFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         runFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/iconTriangleRunFile.gif"))); // NOI18N
         runFileMenuItem.setText("Run from file");
+        runFileMenuItem.setEnabled(false);
         runFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 runFileMenuItemActionPerformed(evt);
@@ -549,6 +561,7 @@ public class Main extends javax.swing.JFrame {
         buttonRun.setEnabled(false);
         compileMenuItem.setEnabled(false);
         buttonCompile.setEnabled(false);
+        runFileMenuItem.setEnabled(false);
         interpreter.Run(desktopPane.getSelectedFrame().getTitle().replace(".tri", ".tam"));
     }//GEN-LAST:event_runMenuItemActionPerformed
 
@@ -618,6 +631,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 br.close();
                 addInternalFrame(chooser.getSelectedFile().getPath(), sr.replace("\r\n", "\n")).setPreviouslySaved(true);
+                runFileMenuItem.setEnabled(false);
             } catch (Exception e) {
                 e.printStackTrace();
                 //JOptionPane.showMessageDialog(null, "An error occurred while trying to open the specified file", "Error", JOptionPane.ERROR_MESSAGE);
@@ -650,10 +664,14 @@ public class Main extends javax.swing.JFrame {
 
                 runMenuItem.setEnabled(true);
                 buttonRun.setEnabled(true);
+                runFileMenuItem.setEnabled(false);
+
             } else {
                 ((FileFrame) desktopPane.getSelectedFrame()).highlightError(compiler.getErrorPosition());
                 runMenuItem.setEnabled(false);
                 buttonRun.setEnabled(false);
+                runFileMenuItem.setEnabled(false);
+
             }
         }
     }//GEN-LAST:event_compileMenuItemActionPerformed
@@ -710,6 +728,7 @@ public class Main extends javax.swing.JFrame {
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
         addInternalFrame("Untitled-" + String.valueOf(untitledCount), "");
         untitledCount++;
+        runFileMenuItem.setEnabled(false);
     }//GEN-LAST:event_newMenuItemActionPerformed
 
     /**
@@ -728,11 +747,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_compileFileMenuItemActionPerformed
 
     private void runFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runFileMenuItemActionPerformed
+
+        ((FileFrame) desktopPane.getSelectedFrame()).clearConsole();
+        ((FileFrame) desktopPane.getSelectedFrame()).selectConsole();                
+        output.setDelegate(delegateConsole);
+        jsonExecuter.Run();
+        
+    }//GEN-LAST:event_runFileMenuItemActionPerformed
+
+    private void loadFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileMenuItemActionPerformed
         JFileChooser chooser = drawFileChooseTAM();
         FileFrame x = new FileFrame(delegateSaveButton, delegateMouse, delegateInternalFrame, delegateEnter);
         String linea;
         String json = "";
-        String result;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 directory = chooser.getCurrentDirectory();
@@ -747,17 +774,16 @@ public class Main extends javax.swing.JFrame {
                 ((FileFrame) desktopPane.getSelectedFrame()).selectConsole();
                 TAM.JsonReader.readFileTAM(json);
                 
-                ((FileFrame) desktopPane.getSelectedFrame()).clearConsole();
-                ((FileFrame) desktopPane.getSelectedFrame()).selectConsole();                
                 output.setDelegate(delegateConsole);
+                System.out.println("\nFile loaded successfully\n");
+                runFileMenuItem.setEnabled(true);
                 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "An error occurred while trying to open the specified file", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-            jsonExecuter.Run();
         }
-    }//GEN-LAST:event_runFileMenuItemActionPerformed
+    }//GEN-LAST:event_loadFileMenuItemActionPerformed
 
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc=" Delegates and Listeners ">    
@@ -918,6 +944,7 @@ public class Main extends javax.swing.JFrame {
     javax.swing.JMenu fileMenu;
     javax.swing.JToolBar fileToolBar;
     javax.swing.JMenu helpMenu;
+    javax.swing.JMenuItem loadFileMenuItem;
     javax.swing.JMenuBar menuBar;
     javax.swing.JMenuItem newMenuItem;
     javax.swing.JMenuItem openMenuItem;
