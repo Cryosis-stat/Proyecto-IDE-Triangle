@@ -1,96 +1,120 @@
 #include <stdio.h>
 
-#include <Instruction>
+#include "Instruction.c"
 
 static const int maxRoutineLevel = 7;
 
-static const int LOADop = 0,
-static const int LOADAop = 1,
-static const int LOADIop = 2,
-static const int LOADLop = 3,
-static const int STOREop = 4,
-static const int STOREIop = 5,
-static const int CALLop = 6,
-static const int CALLIop = 7,
-static const int RETURNop = 8,
-static const int PUSHop = 10,
-static const int POPop = 11,
-static const int JUMPop = 12,
-static const int JUMPIop = 13,
-static const int JUMPIFop = 14,
-static const int HALTop = 15;
+enum machine_operation {
+LOADop = 0,
+LOADAop = 1,
+LOADIop = 2,
+LOADLop = 3,
+STOREop = 4,
+STOREIop = 5,
+CALLop = 6,
+CALLIop = 7,
+RETURNop = 8,
+PUSHop = 10,
+POPop = 11,
+JUMPop = 12,
+JUMPIop = 13,
+JUMPIFop = 14,
+HALTop = 15
+};
+
+
+
+static struct instruction code[1024];
     
-//static Instruction[] code = new Instruction[1024];
     
-    
-    
-    // CODE STORE REGISTERS
-static const int CB = 0,
-static const int PB = 1024,  // = upper bound of code array + 1
+// CODE STORE REGISTERS
+static const int CBs = 0;
+static const int PB = 1024;  // = upper bound of code array + 1
 static const int PT = 1052;  // = PB + 28
 
 // REGISTER NUMBERS
 
+enum registers  {
+CBr = 0,
+CTr = 1,
+PBr = 2,
+PTr = 3,
+SBr = 4,
+STr = 5,
+HBr = 6,
+HTr = 7,
+LBr = 8,
+L1r = LBr + 1,
+L2r = LBr + 2,
+L3r = LBr + 3,
+L4r = LBr + 4,
+L5r = LBr + 5,
+L6r = LBr + 6,
+CPr = 15
+};
 
-static const intCBr = 0,
-static const intCTr = 1,
-static const intPBr = 2,
-static const intPTr = 3,
-static const intSBr = 4,
-static const intSTr = 5,
-static const int HBr = 6,
-static const int HTr = 7,
-static const int LBr = 8,
-static const int L1r = LBr + 1,
-static const int L2r = LBr + 2,
-static const int L3r = LBr + 3,
-static const int L4r = LBr + 4,
-static const int L5r = LBr + 5,
-static const int L6r = LBr + 6,
-static const int CPr = 15;
+
 
 
 // DATA REPRESENTATION
 
-static const int booleanSize = 1,
-static const int characterSize = 1,
-static const int integerSize = 1,
-static const int addressSize = 1,
-static const int closureSize = 2 * addressSize,
+static const int booleanSize = 1;
+static const int characterSize = 1;
+static const int integerSize = 1;
+static const int addressSize = 1;
+//static const int closureSize = 2 * addressSize;
+static const int closureSize = 2 * 1;
 
-static const int linkDataSize = 3 * addressSize,
-static const int falseRep = 0,
-static const int trueRep = 1,
+//static const int linkDataSize = 3 * addressSize;
+static const int linkDataSize = 3 * 1;
+static const int falseRep = 0;
+static const int trueRep = 1;
 static const int maxintRep = 32767;
 
 
 // ADDRESSES OF PRIMITIVE ROUTINES
 
-static const int idDisplacement = 1,
-static const int notDisplacement = 2,
-static const int andDisplacement = 3,
-static const int orDisplacement = 4,
-static const int succDisplacement = 5,
-static const int predDisplacement = 6,
-static const int negDisplacement = 7,
-static const int addDisplacement = 8,
-static const int subDisplacement = 9,
-static const int multDisplacement = 10,
-static const int divDisplacement = 11,
-static const int modDisplacement = 12,
-static const int ltDisplacement = 13,
-static const int leDisplacement = 14,
-static const int geDisplacement = 15,
-static const int gtDisplacement = 16,
-static const int eqDisplacement = 17,
-static const int neDisplacement = 18,
-static const int eolDisplacement = 19,
-static const int eofDisplacement = 20,
-static const int getDisplacement = 21,
-static const int putDisplacement = 22,
-static const int  geteolDisplacement = 23,
-static const int  puteolDisplacement = 24,
-static const int  getintDisplacement = 25,
-static const int putintDisplacement = 26,
-static const int newDisplacement = 27,
-static const int disposeDisplacement = 28;
+enum primitive_routines_address{
+idDisplacement = 1,
+notDisplacement = 2,
+andDisplacement = 3,
+orDisplacement = 4,
+succDisplacement = 5,
+predDisplacement = 6,
+negDisplacement = 7,
+addDisplacement = 8,
+subDisplacement = 9,
+multDisplacement = 10,
+divDisplacement = 11,
+modDisplacement = 12,
+ltDisplacement = 13,
+leDisplacement = 14,
+geDisplacement = 15,
+gtDisplacement = 16,
+eqDisplacement = 17,
+neDisplacement = 18,
+eolDisplacement = 19,
+eofDisplacement = 20,
+getDisplacement = 21,
+putDisplacement = 22,
+geteolDisplacement = 23,
+puteolDisplacement = 24,
+getintDisplacement = 25,
+putintDisplacement = 26,
+newDisplacement = 27,
+disposeDisplacement = 28
+};
+typedef int Primitive_Routine;
+
+
+
+void print_code(int size){
+
+for (int i  = 0; i < size; i ++){
+
+    printf("opcode: %d, registercode: %d , length: %d, value: %d\n",code[i].op,code[i].r,code[i].n,code[i].d);
+    
+} 
+
+
+}

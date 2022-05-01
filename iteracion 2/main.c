@@ -4,8 +4,7 @@
 #include <string.h>
 
 //Library used to parse the JSON file
-#include "parson.h"
-#include "loader.h"
+#include "interpreter.c"
 
 #define MAX_LENGTH 300
 
@@ -29,9 +28,31 @@ int main(int argc, char **argv)
         strcpy(File_Name, argv[1]);
 
     }
+    //save the amount of instructions readed
+    int result = load_Code(File_Name);
 
-    load_Code(File_Name);
+    if (result > 0){
 
+        printf ("\n");
+        print_file();
+        printf ("\n");
+
+        printf( "\nDo you wish to interprete the program? S/N \n\n");
+
+        char response[5];
+        fgets(response,5,stdin);
+        printf("\n");
+
+        if ( ( strcmp(response,"S\n") == 0 ) || ( strcmp(response,"s\n") == 0 )  ){
+
+            interprete(result);
+
+        }
+
+    }
+
+    /* cleanup code */
+    json_value_free(root_value);
 
     return 0;
 }  
