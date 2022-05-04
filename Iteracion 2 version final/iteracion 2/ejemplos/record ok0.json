@@ -1,0 +1,116 @@
+[
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 3
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 4
+  },
+  {
+    "operation" : "STORE",
+    "register" : "SB",
+    "length" : 2,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 2,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 3
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 8
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 4
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 9
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 17
+  },
+  {
+    "operation" : "JUMPIF",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 15
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 83
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 22
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 17
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 78
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 22
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "HALT",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  }
+]

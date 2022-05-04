@@ -1,0 +1,200 @@
+[
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 5
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -1
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 2,
+    "operand" : -3
+  },
+  {
+    "operation" : "CALLI",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "RETURN",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 3
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 11
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 10
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 26
+  },
+  {
+    "operation" : "RETURN",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 17
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 3
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 8
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 26
+  },
+  {
+    "operation" : "RETURN",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "SB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 25
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "SB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 6
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "CB",
+    "length" : 4,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 24
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "SB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 12
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 5
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 10
+  },
+  {
+    "operation" : "CALL",
+    "register" : "CB",
+    "length" : 4,
+    "operand" : 1
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "HALT",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  }
+]

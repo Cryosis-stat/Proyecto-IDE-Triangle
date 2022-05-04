@@ -1,0 +1,140 @@
+[
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "STORE",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 17
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "SB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 21
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 22
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 24
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 26
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 24
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 8
+  },
+  {
+    "operation" : "STORE",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 9
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 13
+  },
+  {
+    "operation" : "JUMPIF",
+    "register" : "CB",
+    "length" : 1,
+    "operand" : 5
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "HALT",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  }
+]

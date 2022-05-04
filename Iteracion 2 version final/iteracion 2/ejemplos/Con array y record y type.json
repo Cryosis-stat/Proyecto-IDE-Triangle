@@ -1,0 +1,74 @@
+[
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 20
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 25
+  },
+  {
+    "operation" : "STORE",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 21
+  },
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 122
+  },
+  {
+    "operation" : "STORE",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 22
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "HALT",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "operation" : "PUSH",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 17
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 17
+  },
+  {
+    "operation" : "JUMPIF",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 9
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "JUMP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 16
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -2
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -2
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "LB",
+    "length" : 1,
+    "operand" : -1
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 9
+  },
+  {
+    "operation" : "CALL",
+    "register" : "CB",
+    "length" : 4,
+    "operand" : 2
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 10
+  },
+  {
+    "operation" : "RETURN",
+    "register" : "CB",
+    "length" : 1,
+    "operand" : 2
+  },
+  {
+    "operation" : "LOADA",
+    "register" : "SB",
+    "length" : 0,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 25
+  },
+  {
+    "operation" : "LOADL",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 2
+  },
+  {
+    "operation" : "LOAD",
+    "register" : "SB",
+    "length" : 1,
+    "operand" : 0
+  },
+  {
+    "operation" : "CALL",
+    "register" : "CB",
+    "length" : 4,
+    "operand" : 2
+  },
+  {
+    "operation" : "CALL",
+    "register" : "PB",
+    "length" : 4,
+    "operand" : 26
+  },
+  {
+    "operation" : "POP",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 1
+  },
+  {
+    "operation" : "HALT",
+    "register" : "CB",
+    "length" : 0,
+    "operand" : 0
+  }
+]
