@@ -28,25 +28,30 @@ int main(int argc, char **argv)
         strcpy(File_Name, argv[1]);
 
     }
-    //save the amount of instructions readed
+   // load the TAM instructions from a JSON file into code memory
+    
     int result = load_Code(File_Name);
 
     if (result > 0){
 
         printf ("\n");
-        print_file();
+        print_file(File_Name);
         printf ("\n");
 
-        printf( "\nDo you wish to interprete the program? S/N \n\n");
+        printf( "\nDo you wish to interpret the program? Y/N \n\n");
 
         char response[5];
         fgets(response,5,stdin);
         printf("\n");
 
-        if ( ( strcmp(response,"S\n") == 0 ) || ( strcmp(response,"s\n") == 0 )  ){
+        if ( ( strcmp(response,"Y\n") == 0 ) || ( strcmp(response,"y\n") == 0 )  ){
 
             interprete(result);
 
+        }else{
+
+            if (( strcmp(response,"N\n") != 0 ) && ( strcmp(response,"n\n") != 0 ) )
+                printf("You  entered an incorrect value\n\n");
         }
 
     }

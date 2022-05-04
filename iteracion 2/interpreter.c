@@ -23,7 +23,7 @@ static int HT;
 static int LB;
 static int status;
 
-static int isNumber = 1;
+static int isNumber = 1; //variable used to verify if a number was processed correctly
 
 
 //Status values
@@ -282,8 +282,11 @@ int readInt(){
     int signal = 1;
     
     fgets(input,50,stdin);
+    printf("\n");
 
     input[strcspn(input, "\r\n")] = 0;
+
+
 
     if (*characters == '-'){
         signal = -1;
@@ -324,41 +327,51 @@ void callPrimitive (int primitiveDisplacement) {
     switch (primitiveDisplacement) {
       case idDisplacement:
         break; // nothing to be done
+
       case notDisplacement:
         data[ST - 1] = toInt(!isTrue(data[ST - 1]));
         break;
+
       case andDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(isTrue(data[ST - 1]) & isTrue(data[ST]));
         break;
+
       case orDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(isTrue(data[ST - 1]) | isTrue(data[ST]));
         break;
+
       case succDisplacement:
         data[ST - 1] = overflowChecked(data[ST - 1] + 1);
         break;
+
       case predDisplacement:
         data[ST - 1] = overflowChecked(data[ST - 1] - 1);
         break;
+
       case negDisplacement:
         data[ST - 1] = -data[ST - 1];
         break;
+
       case addDisplacement:
         ST = ST - 1;
         accumulator = data[ST - 1];
         data[ST - 1] = overflowChecked(accumulator + data[ST]);
         break;
+
       case subDisplacement:
         ST = ST - 1;
         accumulator = data[ST - 1];
         data[ST - 1] = overflowChecked(accumulator - data[ST]);
         break;
+
       case multDisplacement:
         ST = ST - 1;
         accumulator = data[ST - 1];
         data[ST - 1] = overflowChecked(accumulator * data[ST]);
         break;
+        
       case divDisplacement:
         ST = ST - 1;
         accumulator = data[ST - 1];
@@ -367,6 +380,7 @@ void callPrimitive (int primitiveDisplacement) {
         else
           status = failedZeroDivide;
         break;
+
       case modDisplacement:
         ST = ST - 1;
         accumulator = data[ST - 1];
@@ -375,73 +389,78 @@ void callPrimitive (int primitiveDisplacement) {
         else
           status = failedZeroDivide;
         break;
+
       case ltDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(data[ST - 1] < data[ST]);
         break;
+
       case leDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(data[ST - 1] <= data[ST]);
         break;
+
       case geDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(data[ST - 1] >= data[ST]);
         break;
+
       case gtDisplacement:
         ST = ST - 1;
         data[ST - 1] = toInt(data[ST - 1] > data[ST]);
         break;
+
       case eqDisplacement:
         size = data[ST - 1]; // size of each comparand
         ST = ST - 2 * size;
         data[ST - 1] = toInt(equal(size, ST - 1, ST - 1 + size));
         break;
+
       case neDisplacement:
         size = data[ST - 1]; // size of each comparand
         ST = ST - 2 * size;
         data[ST - 1] = toInt(! equal(size, ST - 1, ST - 1 + size));
         break;
+
       case eolDisplacement:
         data[ST] = toInt(currentChar == '\n');
         ST = ST + 1;
         break;
+
       case eofDisplacement:
         data[ST] = toInt(currentChar == -1);
         ST = ST + 1;
         break;
+
       case getDisplacement:
         ST = ST - 1;
         addr = data[ST];
-        //try {
-          currentChar = getchar( );
-          //printf("got in getDisplacement\n");
-        //} catch (java.io.IOException s) {
-        //  status = failedIOError;
-        //}
+        //change in the Java version
+        currentChar = getchar( );
+        getchar();
         data[addr] = (int) currentChar;
         break;
+
       case putDisplacement:
         ST = ST - 1;
         ch = (char) data[ST];
         printf("%c",ch);
         break;
+
       case geteolDisplacement:
-        //try {
+        //change in the Java version
           while ((currentChar = getchar( )) != '\n');
-          //printf("got in geteolDisplacement\n");
-        //} catch (java.io.IOException s) {
-        //  status = failedIOError;
-        //}
         break;
+
       case puteolDisplacement:
         printf("\n");
         break;
+
       case getintDisplacement:
         ST = ST - 1;
         addr = data[ST];
 
-        printf("entro en getintDisplacement\n");
-        //cambio a la funcion de Java
+        //change in the Java version
         accumulator = readInt();
 
         if (isNumber == 0)
@@ -449,17 +468,20 @@ void callPrimitive (int primitiveDisplacement) {
 
         data[addr] = (int) accumulator;
         break;
+
       case putintDisplacement:
         ST = ST - 1;
         accumulator = data[ST];
         printf("%ld",accumulator);
         break;
+
       case newDisplacement:
         size = data[ST - 1];
         checkSpace(size);
         HT = HT - size;
         data[ST - 1] = HT;
         break;
+
       case disposeDisplacement:
         ST = ST - 1; // no action taken at present
         break;
@@ -491,7 +513,6 @@ void interpretProgram() {
       n = currentInstr.n;
       d = currentInstr.d;
 
-      //printf("\n opcode: %d, registercode: %d , length: %d, value: %d\n",op,r,n,d);
 
       // Execute instruction ...
       switch (op) {
