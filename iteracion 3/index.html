@@ -1,0 +1,175 @@
+<head> 
+<title>  
+Interprete de codigo TAM en JavaScript
+</title>  
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+</head>
+
+
+
+<body>
+    <div id="tiulo" style="width:100%; height:10%;">
+
+        <h1 align="center"> Intérprete de código TAM en JavaScript </h1>
+
+
+    </div>
+    <div id = "wrapper">
+
+        <div style="margin-bottom: 2%;">
+          <input type="button" value="File" style="height:7%; width:100px;"  onclick="changeWindow(1)">
+          <input type="button" value="Console" style="height:7%; width:100px;" onclick="changeWindow(2)">
+        </div>
+
+        <div id="container">
+
+          <div style="justify-content: space-between;flex-direction: row;">
+
+            <input type="file" id="file-input" accept=".json">
+
+            <input type="button" value="Ejecutar" style="height:7%; width:100px;"> 
+
+          </div>
+
+          <h3>Contents of the file:</h3>
+          <pre id="file-content"></pre>
+
+        
+        </div>
+
+        <div id="container2">
+
+          <div id="console"> 
+
+            <pre id = "result"> </pre>
+
+          </div>
+
+          <div id="consoleInput"> 
+            
+            <input type="text" id="inputData" name="inputData" style="height: 100%; width: 80%;"/>
+            <input type="button" value="Enter" style="height: 100%; width: 20%; float: right; " 
+            onclick="read_input()"/>
+
+          </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+
+<script> 
+
+
+function changeWindow(ventana){
+  
+  var element;
+
+  if (ventana == 1){
+
+    element = document.getElementById('container2');
+    element.style.display = "none";    
+    element = document.getElementById('container');
+    element.style.display = "inline-block"; 
+  }
+
+  else if (ventana == 2){
+    element = document.getElementById('container');
+    element.style.display = "none";    
+    element = document.getElementById('container2');
+    element.style.display = "inline-block"; 
+  }
+  else
+    return;
+}
+
+function read_input(){
+
+var data = document.getElementById("inputData").value;
+element = document.getElementById("result");
+element.textContent = data;
+//element.textContent = element.textContent + data;
+
+}
+
+
+
+function readSingleFile(e) {
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+    displayContents(contents);
+    var parseado = JSON.parse(contents);
+    console.log(parseado);
+  };
+  reader.readAsText(file);
+}
+
+function displayContents(contents) {
+  var element = document.getElementById('file-content');
+  element.textContent = contents;
+}
+
+document.getElementById('file-input')
+  .addEventListener('change', readSingleFile, false);
+
+</script>
+
+<style>
+  body {
+    background-color: #3215da;
+  }
+
+#wrapper {
+  text-align: center;
+  height: 50%;
+  width: 100%;
+  
+}
+
+#container {
+  display: inline-block;
+  text-align:left;
+  width:40%; 
+  height:400px;
+   background-color:white; 
+   overflow-y: scroll;
+   
+}
+
+#container2 {
+  display: none;
+  text-align:left;
+  width:40%; 
+  height:400px;
+   background-color:white; 
+}
+
+
+#console{
+
+  height:92%; 
+  background-color:white; 
+  overflow-y: scroll;
+
+}
+
+#consoleInput{
+
+  height:8%; 
+  background-color: black;
+
+}
+
+
+
+  </style>
