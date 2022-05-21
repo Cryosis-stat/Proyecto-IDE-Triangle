@@ -1,0 +1,55 @@
+body {
+    background-color: #12007a;
+    font-family: sans-serif;
+  }
+
+h1 {
+  color: white;
+  font-size: 34px;
+}
+
+h3 {
+  font-size: 22px;
+  margin: 5px 10px;
+}
+
+#wrapper {
+  text-align: center;
+  height: 50%;
+  width: 100%;
+  
+}
+
+#container {
+  display: inline-block;
+  text-align:left;
+  width:40%; 
+  height:400px;
+   background-color:white; 
+   overflow-y: scroll;
+   
+}
+
+#container2 {
+  display: none;
+  text-align:left;
+  width:40%; 
+  height:400px;
+   background-color:white; 
+}
+
+
+#console{
+
+  height:92%; 
+  background-color:white; 
+  overflow-y: scroll;
+
+}
+
+#consoleInput{
+
+  height:8%; 
+  background-color: black;
+
+}
