@@ -1,3 +1,5 @@
+
+
 const maxRoutineLevel = 7;
 
 const machine_operation = {
@@ -18,7 +20,7 @@ const machine_operation = {
     HALTop: 15
 };
 
-var instruction = 1024;
+const code = new Array(1024);
 
 // CODE STORE REGISTERS
 const CBs = 0;
@@ -61,11 +63,11 @@ const booleanSize = 1;
 const characterSize = 1;
 const integerSize = 1;
 const addressSize = 1;
-//static const int closureSize = 2 * addressSize;
-const closureSize = 2 * 1;
+const  closureSize = 2 * addressSize;
+//const closureSize = 2 * 1;
 
-//static const int linkDataSize = 3 * addressSize;
-const linkDataSize = 3 * 1;
+const  linkDataSize = 3 * addressSize;
+//const linkDataSize = 3 * 1;
 const falseRep = 0;
 const trueRep = 1;
 const maxintRep = 32767;
@@ -104,4 +106,4 @@ const primitive_routines_address = {
     };
 
 
-    console.log(primitive_routines_address.addDisplacement);
+    //console.log(primitive_routines_address.addDisplacement);

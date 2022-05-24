@@ -5,7 +5,6 @@
   Interprete de codigo TAM
   </title>  
 
-  <script src="https://code.highcharts.com/highcharts.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
   </head>
@@ -32,11 +31,11 @@
 
               <input type="file" id="file-input" accept=".json" style="font-size: 16px; margin: 10px 10px;">
 
-              <input type="button" value="Ejecutar" style="font-size: 16px; height:7%; width:100px;"> 
+              <input type="button" value="Ejecutar" style="font-size: 16px; height:7%; width:100px;"onclick="interprete(load_Code())"> 
 
             </div>
 
-            <h3 style="font-style: verdana;">Contents of the file:</h3>
+            <h3 id="file_header" style="font-style: verdana; display: none;">Contents of the file:</h3>
             <pre id="file-content"></pre>
 
           
@@ -46,15 +45,15 @@
 
             <div id="console"> 
 
-              <pre id = "result"> </pre>
+              <pre id = "console_data"> </pre>
 
             </div>
 
             <div id="consoleInput"> 
               
-              <input type="text" id="inputData" name="inputData" style="font-size: 14px; position: relative; padding: auto; height: 90%; width: 85%;"/>
-              <input type="button" value="Enter" style="font-size: 16px; position: absolute; height: 35px; width: 5.5%; padding: auto; " 
-              onclick="read_input()"/>
+              <input type="text" disabled id="inputData" name="inputData" style="font-size: 14px; position: relative; padding: auto; height: 90%; width: 85%;"/>
+              <input type="button" disabled id="enter_input" value="Enter" style=" font-size: 16px; position: absolute; height: 35px; width: 5.5%; padding: auto;" 
+              onclick="setPressed()"/>
 
             </div>
 
@@ -63,6 +62,11 @@
       </div>
 
       <script src="js/app.js"></script>
+      <script src="js/instruction.js"></script>
+      <script src="js/loader.js"></script>
+      <script src="js/Machine.js"></script>
+      <script src="js/interpreter.js"></script>
+      
   </body>
   
 </html>
