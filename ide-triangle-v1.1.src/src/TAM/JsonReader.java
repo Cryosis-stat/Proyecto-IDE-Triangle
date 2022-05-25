@@ -167,25 +167,283 @@ public class JsonReader {
    }
    
    
+  private static void writeR (char leftbracket, int r, char rightbracket) {
+
+    System.out.print(leftbracket);
+    switch (r) {
+      case Machine.CBr:
+        System.out.print ("CB");
+        break;
+      case Machine.CTr:
+	System.out.print ("CT");
+	break;
+      case Machine.PBr:
+	System.out.print ("PB");
+	break;
+      case Machine.PTr:
+	System.out.print ("PT");
+	break;
+      case Machine.SBr:
+	System.out.print ("SB");
+	break;
+      case Machine.STr:
+	System.out.print ("ST");
+	break;
+      case Machine.HBr:
+	System.out.print ("HB");
+	break;
+      case Machine.HTr:
+	System.out.print ("HT");
+	break;
+      case Machine.LBr:
+	System.out.print ("LB");
+	break;
+      case Machine.L1r:
+	System.out.print ("L1");
+	break;
+      case Machine.L2r:
+	System.out.print ("L2");
+	break;
+      case Machine.L3r:
+	System.out.print ("L3");
+	break;
+      case Machine.L4r:
+	System.out.print ("L4");
+	break;
+      case Machine.L5r:
+	System.out.print ("L5");
+	break;
+      case Machine.L6r:
+	System.out.print ("L6");
+	break;
+      case Machine.CPr:
+	System.out.print ("CP");
+	break;
+    }
+    System.out.print (rightbracket);
+  }
+   
+    private static void blankN() {
+    System.out.print ("      ");
+  } 
+   
+   
+  private static void writeN (int n) {
+    System.out.print ("(" + n + ") ");
+    if (n < 10)
+      System.out.print ("  ");
+    else if (n < 100)
+      System.out.print (" ");
+  }   
+   
+  private static void writeD (int d) {
+    System.out.print (d);
+  }  
+   
+     private static void writePrimitive (int d) {
+    switch (d) {
+      case Machine.idDisplacement:
+        System.out.print ("id      ");
+	break;
+      case Machine.notDisplacement:
+	System.out.print ("not     ");
+	break;
+      case Machine.andDisplacement:
+	System.out.print ("and     ");
+	break;
+      case Machine.orDisplacement:
+	System.out.print ("or      ");
+	break;
+      case Machine.succDisplacement:
+	System.out.print ("succ    ");
+	break;
+      case Machine.predDisplacement:
+	System.out.print ("pred    ");
+	break;
+      case Machine.negDisplacement:
+	System.out.print ("neg     ");
+	break;
+      case Machine.addDisplacement:
+	System.out.print ("add     ");
+	break;
+      case Machine.subDisplacement:
+	System.out.print ("sub     ");
+	break;
+      case Machine.multDisplacement:
+	System.out.print ("mult    ");
+	break;
+      case Machine.divDisplacement:
+	System.out.print ("div     ");
+	break;
+      case Machine.modDisplacement:
+	System.out.print ("mod     ");
+	break;
+      case Machine.ltDisplacement:
+	System.out.print ("lt      ");
+	break;
+      case Machine.leDisplacement:
+	System.out.print ("le      ");
+	break;
+      case Machine.geDisplacement:
+	System.out.print ("ge      ");
+	break;
+      case Machine.gtDisplacement:
+	System.out.print ("gt      ");
+	break;
+      case Machine.eqDisplacement:
+	System.out.print ("eq      ");
+	break;
+      case Machine.neDisplacement:
+	System.out.print ("ne      ");
+	break;
+      case Machine.eolDisplacement:
+	System.out.print ("eol     ");
+	break;
+      case Machine.eofDisplacement:
+	System.out.print ("eof     ");
+	break;
+      case Machine.getDisplacement:
+	System.out.print ("get     ");
+	break;
+      case Machine.putDisplacement:
+	System.out.print ("put     ");
+	break;
+      case Machine.geteolDisplacement:
+	System.out.print ("geteol  ");
+	break;
+      case Machine.puteolDisplacement:
+	System.out.print ("puteol  ");
+	break;
+      case Machine.getintDisplacement:
+	System.out.print ("getint  ");
+	break;
+      case Machine.putintDisplacement:
+	System.out.print ("putint  ");
+	break;
+      case Machine.newDisplacement:
+	System.out.print ("new     ");
+	break;
+      case Machine.disposeDisplacement:
+	System.out.print ("dispose ");
+	break;
+    }
+  }
+   
+     private static void writeInstruction (Instruction instr) {
+
+    switch (instr.op) {
+      case Machine.LOADop:
+	System.out.print ("LOAD  ");
+	writeN(instr.n);
+	writeD(instr.d);
+	writeR('[', instr.r, ']');
+	break;
+
+      case Machine.LOADAop:
+        System.out.print ("LOADA ");
+        blankN();
+        writeD(instr.d);
+        writeR('[', instr.r, ']');
+        break;
+
+      case Machine.LOADIop:
+        System.out.print ("LOADI ");
+        writeN(instr.n);
+        break;
+
+      case Machine.LOADLop:
+        System.out.print ("LOADL ");
+        blankN();
+        writeD(instr.d);
+        break;
+
+      case Machine.STOREop:
+        System.out.print ("STORE ");
+        writeN(instr.n);
+        writeD(instr.d);
+        writeR('[', instr.r, ']');
+        break;
+
+      case Machine.STOREIop:
+        System.out.print ("STOREI");
+        writeN(instr.n);
+        break;
+
+      case Machine.CALLop:
+        System.out.print ("CALL  ");
+        if (instr.r == Machine.PBr) {
+          blankN();
+          writePrimitive(instr.d);
+        } else {
+          writeR('(', instr.n, ')');
+          System.out.print ("  ");
+          writeD(instr.d);
+          writeR('[', instr.r, ']');
+        }
+        break;
+
+      case Machine.CALLIop:
+        System.out.print ("CALLI ");
+	break;
+
+      case Machine.RETURNop:
+        System.out.print ("RETURN");
+        writeN(instr.n);
+        writeD(instr.d);
+        break;
+
+      case Machine.PUSHop:
+        System.out.print ("PUSH  ");
+        blankN();
+        writeD(instr.d);
+        break;
+
+      case Machine.POPop:
+        System.out.print ("POP   ");
+        writeN(instr.n);
+        writeD(instr.d);
+        break;
+
+      case Machine.JUMPop:
+        System.out.print ("JUMP  ");
+        blankN();
+        writeD(instr.d);
+        writeR('[', instr.r, ']');
+        break;
+
+      case Machine.JUMPIop:
+        System.out.print ("JUMPI ");
+        break;
+
+      case Machine.JUMPIFop:
+        System.out.print ("JUMPIF");
+        writeN(instr.n);
+        writeD(instr.d);
+        writeR('[', instr.r, ']');
+        break;
+
+      case Machine.HALTop:
+        System.out.print ("HALT  ");
+    }
+  }
    
 
     public static void readFileTAM(String info) {
         Gson gson = new Gson();
-        String result = "********** TAM Disassembler (Sun Version 2.1) **********\n";
+        String result = "********** TAM JSON Reader ( Version 1) **********\n";
+        System.out.print(result);
         int cont = 0;
         JsonReader[] tam = gson.fromJson(info, JsonReader[].class);
         
         for (JsonReader obj : tam) {
-            result += cont + ":  " + obj.getOperation() + "  (" + obj.getLength() + ")  " + obj.getOperand() + " " + obj.getRegister() + "\n";
             loadInstruction(obj,cont);
+            writeInstruction(Machine.code[cont]);
+            System.out.println();
             cont += 1;
         }
-        System.out.print(result);
         
         if (cont != 0){
             TAM.Interpreter.CT = cont;
-            //interpretProgram();
-            //showStatus();
         }
         
     }
