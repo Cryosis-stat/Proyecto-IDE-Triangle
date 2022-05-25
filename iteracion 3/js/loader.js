@@ -129,6 +129,349 @@ function getOperationCode( operation ){
 
  }
 
+ function getRegisterName( r, ){
+  
+    var registerName;
+
+    switch (r) {
+      case registers.CBr:
+        registerName = "CB";
+        break;
+      case registers.CTr:
+        registerName ="CT";
+	break;
+      case registers.PBr:
+        registerName ="PB";
+	break;
+      case registers.PTr:
+        registerName ="PT";
+	break;
+      case registers.SBr:
+        registerName ="SB";
+	break;
+      case registers.STr:
+        registerName ="ST";
+	break;
+      case registers.HBr:
+        registerName ="HB";
+	break;
+      case registers.HTr:
+        registerName ="HT";
+	break;
+      case registers.LBr:
+        registerName ="LB";
+	break;
+      case registers.L1r:
+        registerName ="L1";
+	break;
+      case registers.L2r:
+        registerName ="L2";
+	break;
+      case registers.L3r:
+        registerName ="L3";
+	break;
+      case registers.L4r:
+        registerName ="L4";
+	break;
+      case registers.L5r:
+        registerName ="L5";
+	break;
+      case registers.L6r:
+        registerName ="L6";
+	break;
+      case registers.CPr:
+        registerName ="CP";
+	break;
+    }
+
+    return registerName;
+  
+  } 
+
+
+
+
+ function writeR ( leftbracket,  r,  rightbracket, data_string) {
+
+    data_string += leftbracket;
+    switch (r) {
+      case "CB":
+        data_string += "CB";
+        break;
+        case "CT":
+        data_string += "CT";
+	break;
+      case "PB":
+        data_string += "PB";
+	break;
+      case "PT":
+        data_string += "PT";
+	break;
+      case "SB":
+        data_string += "SB";
+	break;
+      case "ST":
+        data_string += "ST";
+	break;
+      case "HB":
+        data_string += "HB";
+	break;
+      case "HT":
+        data_string += "HT";
+	break;
+      case "LB":
+        data_string += "LB";
+	break;
+      case "L1":
+        data_string += "L1";
+	break;
+      case "L2":
+        data_string += "L2";
+	break;
+      case "L3":
+        data_string += "L3";
+	break;
+      case "L4":
+        data_string += "L4";
+	break;
+      case "L5":
+        data_string += "L5";
+	break;
+      case "L6":
+        data_string +="L6";
+	break;
+      case "CP":
+        data_string +="CP";
+	break;
+    }
+
+    data_string += rightbracket;
+    return data_string;
+
+  }
+
+
+
+ function blankN(data_string) {
+    data_string += "      ";
+    return data_string;
+
+}
+
+function writeN (n,data_string) {
+    data_string += "(" + n + ") ";
+    if (n < 10)
+        data_string +="  ";
+    else if (n < 100)
+        data_string += " ";
+
+    return data_string;
+
+  }
+
+function writeD ( d,data_string) {
+    data_string += d;
+    return data_string;
+
+  }
+
+function writePrimitive (d,data_string) {
+    switch (d) {
+      case primitive_routines_address.idDisplacement:
+        data_string +="id      ";
+	break;
+      case primitive_routines_address.notDisplacement:
+        data_string +="not     ";
+	break;
+      case primitive_routines_address.andDisplacement:
+        data_string +="and     ";
+	break;
+      case primitive_routines_address.orDisplacement:
+        data_string +="or      ";
+	break;
+      case primitive_routines_address.succDisplacement:
+        data_string +="succ    ";
+	break;
+      case primitive_routines_address.predDisplacement:
+        data_string +="pred    ";
+	break;
+      case primitive_routines_address.negDisplacement:
+        data_string +="neg     ";
+	break;
+      case primitive_routines_address.addDisplacement:
+        data_string +="add     ";
+	break;
+      case primitive_routines_address.subDisplacement:
+        data_string +="sub     ";
+	break;
+      case primitive_routines_address.multDisplacement:
+        data_string +="mult    ";
+	break;
+      case primitive_routines_address.divDisplacement:
+        data_string +="div     ";
+	break;
+      case primitive_routines_address.modDisplacement:
+        data_string +="mod     ";
+	break;
+      case primitive_routines_address.ltDisplacement:
+        data_string +="lt      ";
+	break;
+      case primitive_routines_address.leDisplacement:
+        data_string +="le      ";
+	break;
+      case primitive_routines_address.geDisplacement:
+        data_string +="ge      ";
+	break;
+      case primitive_routines_address.gtDisplacement:
+        data_string +="gt      ";
+	break;
+      case primitive_routines_address.eqDisplacement:
+        data_string += "eq      ";
+	break;
+      case primitive_routines_address.neDisplacement:
+        data_string += "ne      ";
+	break;
+      case primitive_routines_address.eolDisplacement:
+        data_string += "eol     ";
+	break;
+      case primitive_routines_address.eofDisplacement:
+        data_string += "eof     ";
+	break;
+      case primitive_routines_address.getDisplacement:
+        data_string += "get     ";
+	break;
+      case primitive_routines_address.putDisplacement:
+        data_string += "put     ";
+	break;
+      case primitive_routines_address.geteolDisplacement:
+        data_string += "geteol  ";
+	break;
+      case primitive_routines_address.puteolDisplacement:
+        data_string += "puteol  ";
+	break;
+      case primitive_routines_address.getintDisplacement:
+        data_string += "getint  ";
+	break;
+      case primitive_routines_address.putintDisplacement:
+        data_string += "putint  ";
+	break;
+      case primitive_routines_address.newDisplacement:
+        data_string += "new     ";
+	break;
+      case primitive_routines_address.disposeDisplacement:
+        data_string += "dispose ";
+	break;
+    }
+
+    return data_string;
+  }
+
+
+
+
+ function writeInstruction (instr) {
+
+    var data_string = "";
+
+    switch (instr.operation) {
+      case "LOAD":
+	data_string += "LOAD  ";
+	data_string = writeN(instr.length,data_string);
+	data_string =writeD(instr.operand,data_string);
+	data_string =writeR('[', instr.register, ']',data_string);
+	break;
+
+      case "LOADA":
+        data_string +="LOADA ";
+        data_string = blankN(data_string);
+        data_string = writeD(instr.operand,data_string);
+        data_string = writeR('[', instr.register, ']',data_string);
+        break;
+
+      case "LOADI":
+        data_string += "LOADI ";
+        data_string = writeN(instr.length,data_string);
+        break;
+
+      case "LOADL":
+        data_string += "LOADL ";
+        data_string = blankN(data_string);
+        data_string = writeD(instr.operand,data_string);
+        break;
+
+      case "STORE":
+        data_string += "STORE ";
+        data_string = writeN(instr.length,data_string);
+        data_string = writeD(instr.operand,data_string);
+        data_string = writeR('[', instr.register, ']',data_string);
+        break;
+
+      case "STOREI":
+        data_string += "STOREI";
+        data_string = writeN(instr.length,data_string);
+        break;
+
+      case "CALL":
+        data_string += "CALL  ";
+        if (getRegisterCode(instr.register) == registers.PBr) {
+            data_string =  blankN(data_string);
+            data_string = writePrimitive(instr.operand,data_string);
+        } else {
+            data_string = writeR('(', getRegisterName(instr.length), ')',data_string);
+            data_string += "  ";
+            data_string = writeD(instr.operand,data_string);
+            data_string = writeR('[', instr.register, ']',data_string);
+        }
+        break;
+
+      case "CALLI":
+        data_string += "CALLI ";
+	break;
+
+      case "RETURN":
+        data_string += "RETURN";
+        data_string = writeN(instr.length,data_string);
+        data_string = writeD(instr.operand,data_string);
+        break;
+
+      case "PUSH":
+        data_string += "PUSH  ";
+        data_string = blankN(data_string);
+        data_string = writeD(instr.operand,data_string);
+        break;
+
+      case "POP":
+        data_string += "POP   ";
+        data_string = writeN(instr.length,data_string);
+        data_string =  writeD(instr.operand,data_string);
+        break;
+
+      case "JUMP":
+        data_string += "JUMP  ";
+        data_string = blankN(data_string);
+        data_string = writeD(instr.operand,data_string);
+        data_string = writeR('[', instr.register, ']',data_string);
+        break;
+
+      case "JUMPI":
+        data_string += "JUMPI ";
+        break;
+
+      case "JUMPIF":
+        data_string += "JUMPIF";
+        data_string = writeN(instr.length,data_string);
+        data_string = writeD(instr.operand,data_string);
+        data_string = writeR('[', instr.register, ']',data_string);
+        break;
+
+      case "HALT":
+        data_string += "HALT  ";
+    }
+
+    displayContents(data_string);
+  }
+
+
 
  function displayContents(contents) {
     var element = document.getElementById('file-content');
@@ -148,12 +491,11 @@ function getOperationCode( operation ){
     
     for ( var i = 0; i < size; i++) {
 
-        var print_data = "  " + i.toString() + ": " + file_content[i].operation + 
-        " " + file_content[i].register + " " + 
-        file_content[i].length + " " + 
-        file_content[i].operand + "\n";
-
+        var print_data = "  " + i.toString() + ": " 
         displayContents(print_data);
+        writeInstruction(file_content[i]);
+        displayContents("\n");
+
     }
 
 }
