@@ -93,6 +93,270 @@ int getRegisterCode( const char * registers ){
    return registerCode;
 }
 
+   void writeR (char leftbracket, int r, char rightbracket) {
+
+    printf("%c",leftbracket);
+    switch (r) {
+      case CBr:
+        printf("CB");
+        break;
+      case CTr:
+	printf("CT");
+	break;
+      case PBr:
+	printf("PB");
+	break;
+      case PTr:
+	printf("PT");
+	break;
+      case SBr:
+	printf("SB");
+	break;
+      case STr:
+	printf("ST");
+	break;
+      case HBr:
+	printf("HB");
+	break;
+      case HTr:
+	printf("HT");
+	break;
+      case LBr:
+	printf("LB");
+	break;
+      case L1r:
+	printf("L1");
+	break;
+      case L2r:
+	printf("L2");
+	break;
+      case L3r:
+	printf("L3");
+	break;
+      case L4r:
+	printf("L4");
+	break;
+      case L5r:
+	printf("L5");
+	break;
+      case L6r:
+	printf("L6");
+	break;
+      case CPr:
+	printf("CP");
+	break;
+    }
+
+    printf("%c",rightbracket);
+  }
+
+
+ void blankN() {
+    printf("      ");
+  }
+
+
+void writeN (int n) {
+    printf("(%d) ",n);
+    if (n < 10)
+      printf("  ");
+    else if (n < 100)
+      printf(" ");
+  }
+
+void writeD (int d) {
+    printf("%d",d);
+  }
+
+void writePrimitive (int d) {
+    switch (d) {
+      case idDisplacement:
+        printf("id      ");
+	break;
+      case notDisplacement:
+	printf("not     ");
+	break;
+      case andDisplacement:
+	printf("and     ");
+	break;
+      case orDisplacement:
+	printf("or      ");
+	break;
+      case succDisplacement:
+	printf("succ    ");
+	break;
+      case predDisplacement:
+	printf("pred    ");
+	break;
+      case negDisplacement:
+	printf("neg     ");
+	break;
+      case addDisplacement:
+	printf("add     ");
+	break;
+      case subDisplacement:
+	printf("sub     ");
+	break;
+      case multDisplacement:
+	printf("mult    ");
+	break;
+      case divDisplacement:
+	printf("div     ");
+	break;
+      case modDisplacement:
+	printf("mod     ");
+	break;
+      case ltDisplacement:
+	printf("lt      ");
+	break;
+      case leDisplacement:
+	printf("le      ");
+	break;
+      case geDisplacement:
+	printf("ge      ");
+	break;
+      case gtDisplacement:
+	printf("gt      ");
+	break;
+      case eqDisplacement:
+	printf("eq      ");
+	break;
+      case neDisplacement:
+	printf("ne      ");
+	break;
+      case eolDisplacement:
+	printf("eol     ");
+	break;
+      case eofDisplacement:
+	printf("eof     ");
+	break;
+      case getDisplacement:
+	printf("get     ");
+	break;
+      case putDisplacement:
+	printf("put     ");
+	break;
+      case geteolDisplacement:
+	printf("geteol  ");
+	break;
+      case puteolDisplacement:
+	printf("puteol  ");
+	break;
+      case getintDisplacement:
+	printf("getint  ");
+	break;
+      case putintDisplacement:
+	printf("putint  ");
+	break;
+      case newDisplacement:
+	printf("new     ");
+	break;
+      case disposeDisplacement:
+	printf("dispose ");
+	break;
+    }
+  }
+
+ void writeInstruction (struct Data instr) {
+
+    switch (getOperationCode(instr.operation)) {
+      case LOADop:
+	printf("LOAD  ");
+	writeN(atoi(instr.length));
+	writeD(atoi(instr.operand));
+	writeR('[', getRegisterCode(instr.registers), ']');
+	break;
+
+      case LOADAop:
+        printf("LOADA ");
+        blankN();
+        writeD(atoi(instr.operand));
+        writeR('[', getRegisterCode(instr.registers), ']');
+        break;
+
+      case LOADIop:
+        printf("LOADI ");
+        writeN(atoi(instr.length));
+        break;
+
+      case LOADLop:
+        printf("LOADL ");
+        blankN();
+        writeD(atoi(instr.operand));
+        break;
+
+      case STOREop:
+        printf("STORE ");
+        writeN(atoi(instr.length));
+        writeD(atoi(instr.operand));
+        writeR('[', getRegisterCode(instr.registers), ']');
+        break;
+
+      case STOREIop:
+        printf("STOREI");
+        writeN(atoi(instr.length));
+        break;
+
+      case CALLop:
+        printf("CALL  ");
+        if (getRegisterCode(instr.registers) == PBr) {
+          blankN();
+          writePrimitive(atoi(instr.operand));
+        } else {
+          writeR('(', atoi(instr.length), ')');
+          printf("  ");
+          writeD(atoi(instr.operand));
+          writeR('[', getRegisterCode(instr.registers), ']');
+        }
+        break;
+
+      case CALLIop:
+        printf("CALLI ");
+	break;
+
+      case RETURNop:
+        printf("RETURN");
+        writeN(atoi(instr.length));
+        writeD(atoi(instr.operand));
+        break;
+
+      case PUSHop:
+        printf("PUSH  ");
+        blankN();
+        writeD(atoi(instr.operand));
+        break;
+
+      case POPop:
+        printf("POP   ");
+        writeN(atoi(instr.length));
+        writeD(atoi(instr.operand));
+        break;
+
+      case JUMPop:
+        printf("JUMP  ");
+        blankN();
+        writeD(atoi(instr.operand));
+        writeR('[', getRegisterCode(instr.registers), ']');
+        break;
+
+      case JUMPIop:
+        printf("JUMPI ");
+        break;
+
+      case JUMPIFop:
+        printf("JUMPIF");
+        writeN(atoi(instr.length));
+        writeD(atoi(instr.operand));
+        writeR('[', getRegisterCode(instr.registers), ']');
+        break;
+
+      case HALTop:
+        printf("HALT  ");
+    }
+
+        printf("\n");
+  }
+
 
 
 void print_file(int cant){
@@ -101,12 +365,9 @@ void print_file(int cant){
 
     for (int i = 0; i < cant; i++) {
 
-         printf("%d: %.10s %.10s %.10s %.10s \n", i,
-            object_array[i].operation,
-            object_array[i].registers,
-            object_array[i].length,
-            object_array[i].operand
-        );
+        printf("%d: ",i);
+        writeInstruction(object_array[i]);
+
     }
 }
 
